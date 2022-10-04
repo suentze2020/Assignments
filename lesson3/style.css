@@ -146,13 +146,13 @@
     }
 
     .active, li:hover {
+         display: block;
          background: #CB5934;
          padding-top: 2vh;
          padding-bottom: 2vh;
-         padding-left:37%;
-         padding-right:37%;
          list-style:none;
          text-align:center;
+         width: 100%;
     }
 
     section {
