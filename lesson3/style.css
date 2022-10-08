@@ -65,6 +65,15 @@
    float:left;
  }
 
+ img.nba {
+   width:100%;
+   height:auto;
+ }
+
+ .top10 {
+   color:orange;
+ }
+
  aside {
     width:20%;
     height:60vh;
