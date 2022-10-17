@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0px;
+            padding:0px;
+            /*
+            border-style:solid;
+            border-width:.5px;
+            */
+        }
+
+        body {
+            height:100vh;
+            display:grid;
+            grid-template-columns: 70% auto;
+            grid-template-rows:10% 80% 10%;
+            grid-template-areas:"header header"
+                                "main aside"
+                                "footer footer";
+        }
+
+        header {
+            border-style:solid;
+            grid-area:header;
+        }
+
+        main {
+            display:flex;
+            flex-direction: row;
+            align-items:flex-start;
+            border-style:solid;
+            grid-area:main;
+            /* overflow-y: scroll; */
+        }
+
+        main .col {
+            width: 100%;
+            margin:10px;
+        }
+
+        main .col1 {
+            /* width:20%;  */
+        }
+
+        main .col2 {
+            /* width:30%; */
+        }
+
+        main .col3 {
+            /* width:50%; */
+
+        }
+
+        aside {
+            border-style:solid;
+            grid-area:aside;
+        }
+
+        footer {
+            border-style:solid;
+            grid-area:footer;
+        }
+
+        /* @media screen and (max-width: 600px) {
+            body, main, aside, main .col1, main .col2, main .col3 {
+                display:block;
+                width:100%;
+            }
+        } */
+
+    </style>
+</head>
+<body>
+    <header><h2>Header Section</h2></header>
+    <main>
+        <div class="col">
+            <h2>Main Section Col</h2>
+            <p>Donec cursus dui nunc, a euismod magna hendrerit id. Cras porta augue lectus, nec convallis felis convallis id. Suspendisse dignissim laoreet finibus. Phasellus maximus magna ipsum, eu tincidunt leo bibendum ac. Duis ut vehicula mi. Integer aliquam lorem tristique sodales euismod. Nulla quam sapien, dignissim pretium ante quis, eleifend consequat justo. Etiam mattis velit eget laoreet tincidunt. Nam enim dolor, sagittis vel scelerisque sed, auctor nec elit. Vivamus commodo aliquam ligula ac elementum.</p>
+        </div>
+    </main>
+    <aside>
+        <h2>Aside Section</h2>
+        <p>Donec cursus dui nunc, a euismod magna hendrerit id. Cras porta augue lectus, nec convallis felis convallis id. Suspendisse dignissim laoreet finibus. Phasellus maximus magna ipsum, eu tincidunt leo bibendum ac. Duis ut vehicula mi. Integer aliquam lorem tristique sodales euismod. Nulla quam sapien, dignissim pretium ante quis, eleifend consequat justo. Etiam mattis velit eget laoreet tincidunt. Nam enim dolor, sagittis vel scelerisque sed, auctor nec elit. Vivamus commodo aliquam ligula ac elementum.</p>
+    </aside>
+    <footer><h2>Footer Section</h2></footer>
+</body>
+</html>
