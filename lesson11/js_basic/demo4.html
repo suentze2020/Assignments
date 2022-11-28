@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Demo4</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+    <link href="style.css" rel="stylesheet">
+    <style>
+        #enter_btn:hover, #store_btn:hover, #clear_btn:hover, 
+        #retrieve_btn:hover, #delete_btn:hover {
+        background:black;
+        color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class='container'>
+                <form id='login'>
+                    <div class='form-group'>
+                        <label>
+                            User Name:
+                        </label>
+                        <input type='text' name='username'>
+                    </div>
+                    <div class='form-group'> 
+                    <label>
+                        Password:
+                    </label>
+                    <input type='password' name='pwd'>
+                    </div>
+                    <button id='submitBtn' type='button'>Send</button>
+                </form>
+                <div id='answer'></div>
+                <br>
+                <div id="result"></div>
+                <form id="fid">
+                    <div class='form-group'>
+                        <label>Student Id:</label><input type="text" id="student_id" name="student_id" placeholder="student ID">
+                    </div>
+                    <div class='form-group'>
+                        <label>Student Name:</label><input type="text" id="student_name" name="student_name" placeholder="student Name">
+                    </div>    
+                 </form>
+                  <button id="enter_btn">Enter</button>
+                  <button id="store_btn">Store</button>
+                  <button id="reset_btn">Reset Entry</button>
+                  <button id="clear_btn">Clear Screen</button>
+                  <button id="retrieve_btn">Retrieve</button>
+                  <button id="delete_btn">Delete All</button>
+                  <h4><b>Student List</b></h4> 
+                  <div id="demo"></div>
+    </div>
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', sayHello);
+
+        function sayHello() {
+                var username = document.forms[0].username.value;
+                var password = document.forms[0].pwd.value;
+                if (username == '') {alert('username cannot be blank!')};
+                if (password == '') {alert('password cannot be blank!')};
+                if (username !== '' && password !== '') {
+                    alert("Hello " + username + "! Your password is " + password + '.');
+                    var answer = "Hello " + username + "! Your password is " + password + '.';
+                    document.getElementById('answer').innerHTML = answer;
+                    return true
+                }
+                return false;
+        }
+    </script>
+    <script>
+        students = [];
+        display_list = '';
+        json_string = '';
+
+        document.getElementById("enter_btn").addEventListener("click", function() {
+            sid = document.getElementById("student_id").value;
+            sname = document.getElementById("student_name").value;
+            message = "Student ID:"+sid+"<br>"+"Student Name:"+sname+"<br>";
+            document.getElementById("demo").innerHTML += message;
+            student = {}
+            student.id = sid;
+            student.name = sname;
+            students.push(student);
+        });
+    
+        document.getElementById("store_btn").addEventListener("click", function() {
+            localStorage.setItem("studentDB",JSON.stringify(students));
+        });
+
+        document.getElementById("reset_btn").addEventListener("click", function() {
+            document.getElementById("student_id").value = '';
+            document.getElementById("student_name").value = '';
+        });
+
+        document.getElementById("clear_btn").addEventListener("click", function() {
+            students = [];
+            display_list = '';
+            json_string = '';
+            document.getElementById("demo").innerHTML = display_list;
+        });
+    
+        document.getElementById("retrieve_btn").addEventListener("click", function() {
+            json_string = localStorage.getItem("studentDB");
+            student_list = JSON.parse(json_string);
+            for (i=0;i<student_list.length;i++) {
+               display_list = display_list + "Student ID:"+student_list[i].id+"<br>"+"Student Name: "+student_list[i].name+"<br>"; 
+               students.push(student_list[i]);
+            };
+           
+            document.getElementById("demo").innerHTML = display_list;
+    
+        });
+
+        document.getElementById("delete_btn").addEventListener("click", function() {
+            localStorage.removeItem("studentDB");
+            students = [];
+            display_list = '';
+            json_string = '';
+            document.getElementById("demo").innerHTML = display_list;
+        });
+
+        $(document).ready(function() {
+            json_string = localStorage.getItem("studentDB");
+            student_list = JSON.parse(json_string);
+            for (i=0;i<student_list.length;i++) {
+               display_list = display_list + "Student ID:"+student_list[i].id+"<br>"+"Student Name: "+student_list[i].name+"<br>"; 
+               students.push(student_list[i]);
+            };
+           
+            document.getElementById("demo").innerHTML = display_list;
+
+        }); // document ready           
+    
+      </script>    
+</body>
+</html>
